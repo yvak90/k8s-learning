@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: gol-deploy
+  name: gol-deploy
+spec:
+  ports:
+  - port: 8080
+    protocol: TCP
+    targetPort: 8080
+    nodePort: 32555
+  selector:
+    app: gol-deploy
+  type: NodePort
+status:
+  loadBalancer: {}

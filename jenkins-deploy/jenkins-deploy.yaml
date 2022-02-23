@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: jenkins-deploy
+  name: jenkins-deploy
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: jenkins-deploy
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+  template:
+    metadata:
+      labels:
+        app: jenkins-deploy
+    spec:
+      containers:
+      - image: jenkins:2.60.3
+        name: jenkins
+        resources: {}
+status: {}
